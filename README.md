@@ -1,2 +1,2 @@
 # QuickStartAngular
-Tasks for Diasoft cource quick start MSA
+Tasks for Diasoft cource quick start Angular
