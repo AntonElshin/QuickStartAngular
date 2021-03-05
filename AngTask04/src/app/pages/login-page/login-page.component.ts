@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -14,6 +14,9 @@ export class LoginPageComponent implements OnInit {
   disableFlag = false;
 
   constructor(private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    };
   }
 
   ngOnInit(): void {
@@ -38,13 +41,18 @@ export class LoginPageComponent implements OnInit {
 
     setTimeout(() => {
       console.log('Timeout is over');
-
       this.loadingExecutingFlag = false;
       this.disableFlag = false;
       this.form.controls.login.setValue(null);
       this.form.controls.password.setValue(null);
-
-      this.router.navigate(['']);
+      this.reloadCurrentRoute();
     }, 3000);
+  }
+
+  reloadCurrentRoute(): void {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 }
