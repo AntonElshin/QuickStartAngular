@@ -8,12 +8,13 @@ const routes: Routes = [
     path: '', component: AppComponent, children: [
       {path: '', redirectTo: '/login', pathMatch: 'full'},
       {path: 'login', component: LoginPageComponent}
-    ]
+    ],
+    runGuardsAndResolvers: 'always'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

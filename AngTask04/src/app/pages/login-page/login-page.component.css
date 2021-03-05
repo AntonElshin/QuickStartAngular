@@ -1,4 +1,8 @@
-div {
+body{
+  width:100%;
+}
+
+.cont {
   height: 100%;
   display: -ms-flexbox;
   display: block;
@@ -37,4 +41,18 @@ div {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.wrap {
+  padding-top: 3rem;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.box {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
