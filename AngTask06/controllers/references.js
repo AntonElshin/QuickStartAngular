@@ -31,20 +31,21 @@ export const create = (req, res) => {
         id: seq,
         ...req.body
     }
-    seq++;
+    seq += 1;
     references.push(newReference)
     res.status(201).json(newReference)
 }
 
 export const modify = (req, res) => {
     let updatedReference = {};
-    for(let ref in references) {
-       if(ref.id === req.params.id) {
+    for(let i=0; i<references.length; i++) {
+        let ref = references[i];
+        if(ref.id === +req.params.id) {
            updatedReference = {
                ...req.body,
-               id: req.params.id
+               id: +req.params.id
            }
-           ref = updatedReference
+           references[i] = updatedReference
            break;
        }
     }
@@ -52,6 +53,6 @@ export const modify = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    references = references.filter(s => s.id !== req.params.id)
+    references = references.filter(s => s.id !== +req.params.id)
     res.status(200).json({ message: 'Reference has been removed!'})
 }
