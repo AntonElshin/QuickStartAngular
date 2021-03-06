@@ -46,7 +46,7 @@ export class LoginPageComponent implements OnInit {
       this.form.controls.login.setValue(null);
       this.form.controls.password.setValue(null);
       this.reloadCurrentRoute();
-    }, 3000);
+    }, 2000);
   }
 
   reloadCurrentRoute(): void {
