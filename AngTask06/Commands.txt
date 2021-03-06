@@ -1,0 +1,33 @@
+node index - запуск до прописывания скриптов для nodemon
+set PORT=4200 && node index - запуск с установкой порта
+npm run serve - запуск после прописывания скриптов для nodemon
+Ctrl+C - остановить
+
+1). Инициализировать проект
+npm init -y
+
+2). Установить express
+npm install express
+
+3). Дописать в package.json
+  "type": "module",
+
+4). Установить типы для express для WebStorm
+npm install -D @types/express
+
+5). Включить заполнение для Node.js для WebStorm 
+Ctrl + Shift + A закладка Avtions и написать nodejs
+Toggle coding assistance for Node.js  
+
+6). Установить nodemon для автоматического рестарта сервера при изменениях
+npm install -D nodemon
+
+7). Дописать в package.json для установки новых команд nodemon
+    "serve": "nodemon index.js",
+    "start": "node index.js"
+
+8). Установить модуль для цветного вывода в консоль
+npm install colors
+
+9). Установить шаблонизатор ejs
+npm install ejs
