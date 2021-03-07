@@ -1,36 +1,38 @@
-<form class="needs-validation" [formGroup]="form" (ngSubmit)="add()">
-  <div class="form-group">
-    <label for="name">Название справочника</label>
-    <input type="text" class="form-control" id="name" formControlName="name" aria-describedby="nameHelp">
-    <small id="nameHelp" class="form-text text-muted">Допустимы любые символы</small>
-    <div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
-      <small *ngIf="form.get('name').errors?.required">
-        <p style="color:red">Название справочника не может быть пустым</p>
-      </small>
+<div *ngIf="form">
+  <form class="needs-validation" [formGroup]="form" (ngSubmit)="add()">
+    <div class="form-group">
+      <label for="name">Название справочника</label>
+      <input type="text" class="form-control" id="name" formControlName="name" aria-describedby="nameHelp">
+      <small id="nameHelp" class="form-text text-muted">Допустимы любые символы</small>
+      <div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
+        <small *ngIf="form.get('name').errors?.required">
+          <p style="color:red">Название справочника не может быть пустым</p>
+        </small>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="sysname">Системное наименование справочника</label>
-    <input type="text" class="form-control" id="sysname" formControlName="sysname" aria-describedby="sysnameHelp">
-    <small id="sysnameHelp" class="form-text text-muted">Системное наименование должно начинаться с латинских букв или цифр. Допустимы латинские буквы, цифры, нижнее подчёркивание и пробел</small>
-    <div *ngIf="form.get('sysname').invalid && (form.get('sysname').dirty || form.get('sysname').touched)">
-      <small *ngIf="form.get('sysname').errors?.required">
-        <p style="color:red">Системное наименование не может быть пустым</p>
-      </small>
-      <small *ngIf="form.get('sysname').errors?.pattern">
-        <p style="color:red">Введённое значение системного наименования недопустимо</p>
-      </small>
-      <small *ngIf="form.get('sysname').errors?.notUniqueSysName">
-        <p style="color:red">Неуникальное системное наименование</p>
-      </small>
+    <div class="form-group">
+      <label for="sysname">Системное наименование справочника</label>
+      <input type="text" class="form-control" id="sysname" formControlName="sysname" aria-describedby="sysnameHelp">
+      <small id="sysnameHelp" class="form-text text-muted">Системное наименование должно начинаться с латинских букв или цифр. Допустимы латинские буквы, цифры, нижнее подчёркивание и пробел</small>
+      <div *ngIf="form.get('sysname').invalid && (form.get('sysname').dirty || form.get('sysname').touched)">
+        <small *ngIf="form.get('sysname').errors?.required">
+          <p style="color:red">Системное наименование не может быть пустым</p>
+        </small>
+        <small *ngIf="form.get('sysname').errors?.pattern">
+          <p style="color:red">Введённое значение системного наименования недопустимо</p>
+        </small>
+        <small *ngIf="form.get('sysname').errors?.notUniqueSysName">
+          <p style="color:red">Неуникальное системное наименование</p>
+        </small>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="description">Описание</label>
-    <input type="text" class="form-control" id="description" formControlName="description" aria-describedby="descriptionHelp">
-    <small id="descriptionHelp" class="form-text text-muted">Допустимы любые символы</small>
-  </div>
+    <div class="form-group">
+      <label for="description">Описание</label>
+      <input type="text" class="form-control" id="description" formControlName="description" aria-describedby="descriptionHelp">
+      <small id="descriptionHelp" class="form-text text-muted">Допустимы любые символы</small>
+    </div>
 
-  <button type="button" class="btn btn-dark" (click)="goToReferencesPage()">Назад</button>
-  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Добавить</button>
-</form>
+    <button type="button" class="btn btn-dark" (click)="goToReferencesPage()">Назад</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Добавить</button>
+  </form>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {Reference} from '../../interfaces/reference-interfaces';
@@ -55,6 +55,10 @@ export class ReferenceCreateComponent implements OnInit {
         });
 
       this.goToReferencesPage();
+    }
+    else {
+      console.log('Форма не валидная!');
+      console.log('form', this.form);
     }
 
   }
