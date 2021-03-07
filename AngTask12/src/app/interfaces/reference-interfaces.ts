@@ -4,7 +4,10 @@ export interface Reference {
   id?: string;
   name: string;
   sysname: string;
-  description: string;
+  description?: string;
+  author?: string;
+  creationDate?: Date;
+  elementQuantity?: number;
 }
 
 export interface ReferencePageSortRequest extends PageSortRequest {

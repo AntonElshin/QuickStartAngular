@@ -21,7 +21,6 @@
         из {{ totalPage }} страниц
         <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage-1)" [disabled]="curPage == 0">&laquo;</button>
         <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage+1)" [disabled]="curPage + 1 == totalPage">&raquo;</button>
-        <button type="submit" class="btn btn-primary mb-2" (click)="goToAddPage()">+ Новый справочник</button>
       </form>
     </div>
   </nav>
@@ -63,8 +62,7 @@
     <td>{{ref.description}}</td>
     <td>
       <div>
-        <button type="button" class="btn btn-primary" [routerLink]="['/reference-edit', ref.id]">Изменить</button>
-        <button type="button" class="btn btn-danger" (click)="remove(ref.id)">Удалить</button>
+        <button type="button" class="btn btn-primary" [routerLink]="['/reference-view', ref.id]">Просмотр</button>
       </div>
     <td>
   </tr>

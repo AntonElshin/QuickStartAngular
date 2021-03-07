@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {ReferencesComponent} from './pages/references/references.component';
-import {ReferenceCreateComponent} from './pages/reference-create/reference-create.component';
-import {ReferenceEditComponent} from './pages/reference-edit/reference-edit.component';
+import {ReferenceViewComponent} from './pages/reference-view/reference-view.component';
 import {AppComponent} from './app.component';
+
 
 const routes: Routes = [
   {
     path: '', component: AppComponent, children: [
       {path: '', redirectTo: '/references', pathMatch: 'full'},
       {path: 'references', component: ReferencesComponent},
-      {path: 'reference-create', component: ReferenceCreateComponent},
-      {path: 'reference-edit/:id', component: ReferenceEditComponent}
+      {path: 'reference-view/:id', component: ReferenceViewComponent}
     ],
     runGuardsAndResolvers: 'always'
   }
