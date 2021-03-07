@@ -174,3 +174,15 @@ export const remove = (req, res) => {
     }
 
 }
+
+export const checkSysname = (req, res) => {
+    console.log('In checkSysname')
+    console.log('req', req)
+    let reference = references.filter(s => s.sysname === req.params.sysname)
+    if(reference.length == 1) {
+        res.status(200).json(reference)
+    }
+    else {
+        res.status(200).json()
+    }
+}
