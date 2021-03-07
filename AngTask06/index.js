@@ -4,6 +4,7 @@ import path from 'path'
 //import serverRoutes from './routes/servers.js'
 import referenceRoutes from './routes/references.js';
 import {getRandomString} from './controllers/references.js'
+import {allowCrossDomain} from "./middlewares.js";
 
 const __dirname = path.resolve()
 const PORT = process.env.PORT ?? 3000;
@@ -18,8 +19,20 @@ app.use(express.urlencoded({ extended: false }))
 //app.use(requestTime)
 //app.use(logger)
 
+app.use(allowCrossDomain);
+/*app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});*/
+
 //app.use(serverRoutes)
 app.use(referenceRoutes)
+
+
 
 app.get('/', (req, res) => {
     res.render('randomString', {title: 'RandomString', randomString: getRandomString()})
