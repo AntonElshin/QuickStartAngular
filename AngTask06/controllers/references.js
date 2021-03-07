@@ -46,7 +46,7 @@ export const getAll = (req, res) => {
             filterPage = req.query[key];
         }
     }
-    
+
     //применяем фильтр по name и сиснейм
     let foundedReferences = [];
     if (filterName !== undefined && filterSysname !== undefined) {
