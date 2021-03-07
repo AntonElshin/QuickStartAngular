@@ -1,26 +1,19 @@
-/*let references = [
-    {id: 1, name: 'Типы доходов', sysname: 'IncomeTypes', description: 'Справочник типов доходов'},
-    {id: 2, name: 'Типы расходов', sysname: 'ExpenseTypes', description: 'Справочник типов расходов'},
-    {id: 3, name: 'Марки автомобилей', sysname: 'CarBrands', description: 'Справочник марок автомобилей'},
-    {id: 4, name: 'Модели автомобилей', sysname: 'CarModels', description: 'Справочник моделей автомобилей'}
-]*/
-
 let references = [
-    {id: 1, name: 'ref name 1', sysname: 'refsysname1', description: 'description 1'},
-    {id: 2, name: 'ref name 2', sysname: 'refsysname2', description: 'description 2'},
-    {id: 3, name: 'ref name 3', sysname: 'refsysname3', description: 'description 3'},
-    {id: 4, name: 'ref name 4', sysname: 'refsysname4', description: 'description 4'},
-    {id: 5, name: 'ref name 5', sysname: 'refsysname5', description: 'description 5'},
-    {id: 6, name: 'ref name 6', sysname: 'refsysname6', description: 'description 6'},
-    {id: 7, name: 'ref name 7', sysname: 'refsysname7', description: 'description 7'},
-    {id: 8, name: 'ref name 8', sysname: 'refsysname8', description: 'description 8'},
-    {id: 9, name: 'ref name 9', sysname: 'refsysname9', description: 'description 9'},
-    {id: 10, name: 'ref name 10', sysname: 'refsysname10', description: 'description 10'},
-    {id: 11, name: 'ref name 11', sysname: 'refsysname11', description: 'description 11'},
-    {id: 12, name: 'ref name 12', sysname: 'refsysname12', description: 'description 12'},
-    {id: 13, name: 'ref name 13', sysname: 'refsysname13', description: 'description 13'},
-    {id: 14, name: 'ref name 14', sysname: 'refsysname14', description: 'description 14'},
-    {id: 15, name: 'ref name 15', sysname: 'refsysname15', description: 'description 15'}
+    {id: 1, name: 'ref name 1', sysname: 'refsysname1', description: 'description 1', author: 'Anton', creationDate: new Date(2019, 0, 1), elementQuantity: 5},
+    {id: 2, name: 'ref name 2', sysname: 'refsysname2', description: 'description 2', author: 'Maksin', creationDate: new Date(2019, 1, 1), elementQuantity: 6},
+    {id: 3, name: 'ref name 3', sysname: 'refsysname3', description: 'description 3', author: 'Denis', creationDate: new Date(2019, 2, 1), elementQuantity: 7},
+    {id: 4, name: 'ref name 4', sysname: 'refsysname4', description: 'description 4', author: 'Ivan', creationDate: new Date(2019, 3, 1), elementQuantity: 8},
+    {id: 5, name: 'ref name 5', sysname: 'refsysname5', description: 'description 5', author: 'Anton', creationDate: new Date(2019, 4, 1), elementQuantity: 9},
+    {id: 6, name: 'ref name 6', sysname: 'refsysname6', description: 'description 6', author: 'Maksin', creationDate: new Date(2019, 5, 1), elementQuantity: 10},
+    {id: 7, name: 'ref name 7', sysname: 'refsysname7', description: 'description 7', author: 'Denis', creationDate: new Date(2019, 6, 1), elementQuantity: 6},
+    {id: 8, name: 'ref name 8', sysname: 'refsysname8', description: 'description 8', author: 'Ivan', creationDate: new Date(2019, 7, 1), elementQuantity: 4},
+    {id: 9, name: 'ref name 9', sysname: 'refsysname9', description: 'description 9', author: 'Anton', creationDate: new Date(2019, 8, 1), elementQuantity: 3},
+    {id: 10, name: 'ref name 10', sysname: 'refsysname10', description: 'description 10', author: 'Maksin', creationDate: new Date(2019, 9, 1), elementQuantity: 2},
+    {id: 11, name: 'ref name 11', sysname: 'refsysname11', description: 'description 11', author: 'Denis', creationDate: new Date(2019, 10, 1), elementQuantity: 7},
+    {id: 12, name: 'ref name 12', sysname: 'refsysname12', description: 'description 12', author: 'Ivan', creationDate: new Date(2019, 11, 1), elementQuantity: 8},
+    {id: 13, name: 'ref name 13', sysname: 'refsysname13', description: 'description 13', author: 'Anton', creationDate: new Date(2020, 0, 1), elementQuantity: 9},
+    {id: 14, name: 'ref name 14', sysname: 'refsysname14', description: 'description 14', author: 'Maksin', creationDate: new Date(2020, 1, 1), elementQuantity: 10},
+    {id: 15, name: 'ref name 15', sysname: 'refsysname15', description: 'description 15', author: 'Denis', creationDate: new Date(2020, 2, 1), elementQuantity: 9}
 ]
 
 
