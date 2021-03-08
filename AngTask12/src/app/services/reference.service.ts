@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 import {Reference, ReferencePageSortRequest, ReferencePageSortResponse} from '../interfaces/reference-interfaces';
 
@@ -49,26 +48,4 @@ export class ReferenceService {
   getById(id: string): Observable<Reference> {
     return this.http.get<Reference>(`http://localhost:3000/api/references/${id}`);
   }
-
-  add(reference: Reference): Observable<Reference> {
-    return this.http.post<Reference>('http://localhost:3000/api/references', reference);
-  }
-
-  modify(id: string, reference: Reference): Observable<Reference> {
-    return this.http.put<Reference>(`http://localhost:3000/api/references/${id}`, {
-      name: reference.name,
-      sysname: reference.sysname,
-      description: reference.description
-    });
-  }
-
-  remove(id: string): Observable<void> {
-    console.log('In delete', id);
-    return this.http.delete<void>(`http://localhost:3000/api/references/${id}`);
-  }
-
-  validateSysname(sysname: string): Observable<Reference> {
-    return this.http.get<Reference>(`http://localhost:3000/api/references/check/${sysname}`);
-  }
-
 }

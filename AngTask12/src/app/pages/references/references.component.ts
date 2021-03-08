@@ -81,13 +81,6 @@ export class ReferencesComponent implements OnInit {
 
   }
 
-  remove(id: string): void {
-    this.referenceService.remove(id).subscribe(() => {
-      console.log('delete');
-      this.fetch(0);
-    });
-  }
-
   goToAddPage(): void {
     this.router.navigate(['/reference-create']);
   }
