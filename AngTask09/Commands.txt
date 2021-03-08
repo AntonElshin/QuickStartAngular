@@ -1,0 +1,26 @@
+1). Создать проект
+ng new AngTask09 --skipTests
+
+2). Установить jQuery
+npm install jquery --save
+
+3). Установить Popper.js
+npm install popper.js --save
+
+4). Установить Bootstrap
+npm install bootstrap --save
+
+5). В файле angular.json добавить
+
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+
+6). Создать компонет
+ng g c pages/login-page --skipTests
