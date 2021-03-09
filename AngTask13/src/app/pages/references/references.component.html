@@ -18,9 +18,9 @@
             <a class="dropdown-item" *ngFor="let p of pages" (click)="fetch(p.id)"> {{ p.name }} </a>
           </div>
         </div>
-        из {{ totalPage }} страниц
-        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage-1)" [disabled]="curPage == 0">&laquo;</button>
-        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage+1)" [disabled]="curPage + 1 == totalPage">&raquo;</button>
+        из {{ +totalPage }} страниц
+        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage-1)" [disabled]="+curPage == 0">&laquo;</button>
+        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage+1)" [disabled]="+curPage + 1 == +totalPage">&raquo;</button>
         <button type="submit" class="btn btn-primary mb-2" (click)="goToAddPage()">+ Новый справочник</button>
       </form>
     </div>
