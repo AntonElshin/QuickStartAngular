@@ -58,8 +58,6 @@ export class ReferencesComponent implements OnInit {
 
   fetch(requestPage: number): void {
 
-    console.log('requestPage', requestPage);
-
     const searchRequest: ReferencePageSortRequest = {
       page: requestPage ? String(requestPage) : String(0),
       sort: null,
@@ -70,19 +68,12 @@ export class ReferencesComponent implements OnInit {
 
     this.referenceService.fetch(searchRequest)
       .subscribe(response => {
-        console.log('Response', response);
         this.pageSortResponse = response;
         this.curPage = this.pageSortResponse.number;
         this.totalPage = this.pageSortResponse.totalPages;
         this.references = this.pageSortResponse.content;
-        console.log('this.references', this.references);
         this.fillPages();
       });
 
   }
-
-  goToAddPage(): void {
-    this.router.navigate(['/reference-create']);
-  }
-
 }
