@@ -1,0 +1,65 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Справочники</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <form class="form-inline my-3 my-lg-0">
+        {{ +curPage + 1}}
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" *ngFor="let p of pages" (click)="fetch(p.id)"> {{ p.name }} </a>
+          </div>
+        </div>
+        из {{ +totalPage }} страниц
+        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage-1)" [disabled]="+curPage == 0">&laquo;</button>
+        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage+1)" [disabled]="+curPage + 1 == +totalPage">&raquo;</button>
+      </form>
+    </div>
+  </nav>
+</div>
+
+<form [formGroup]="form" (click)="fetch(0)">
+  <div class="form-row">
+    <div class="col-sm-3 my-1">
+      <label class="sr-only" for="referenceName">Название</label>
+      <input type="text" class="form-control" id="referenceName" placeholder="Название" formControlName="name">
+    </div>
+    <div class="col-sm-3 my-1">
+      <label class="sr-only" for="referenceSysName">Системное название</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="referenceSysName" placeholder="Системное название" formControlName="sysname">
+      </div>
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-primary">Поиск</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-hover" id="referenceTable">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Название</th>
+    <th scope="col">Системное наименование</th>
+    <th scope="col">Описание</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ref of references">
+    <th scope="row">{{ref.id}}</th>
+    <td>{{ref.name}}</td>
+    <td>{{ref.sysname}}</td>
+    <td>{{ref.description}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<app-reference-info [reference]="selectedReference"></app-reference-info>
