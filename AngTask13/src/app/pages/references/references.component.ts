@@ -10,7 +10,7 @@ import {ReferenceService} from '../../services/reference.service';
 @Component({
   selector: 'app-references',
   templateUrl: './references.component.html',
-  styleUrls: ['./references.component.scss']
+  styleUrls: ['./references.component.css']
 })
 export class ReferencesComponent implements OnInit {
 

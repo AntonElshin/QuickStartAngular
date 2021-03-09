@@ -10,7 +10,7 @@ import {ReferenceSysNameValidator} from '../../validators/reference.validator';
 @Component({
   selector: 'app-reference',
   templateUrl: './reference-create.component.html',
-  styleUrls: ['./reference-create.component.scss']
+  styleUrls: ['./reference-create.component.css']
 })
 export class ReferenceCreateComponent implements OnInit {
 
