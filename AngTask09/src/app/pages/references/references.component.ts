@@ -25,11 +25,8 @@ export class ReferencesComponent implements OnInit, DoCheck {
   size = 10;
 
   references: Reference[] = [];
+  selectedReference: Reference;
   pages: Page[] = [];
-
-  author: string;
-  creationDate: Date;
-  elementQuantity: string;
 
   constructor(
     private http: HttpClient,
@@ -47,16 +44,15 @@ export class ReferencesComponent implements OnInit, DoCheck {
           for (let i = 0; i < this.references.length; i++) {
             const ref = this.references[i];
             if (+ref.id === +selNode.innerHTML) {
-              if(ref.author !== undefined) {
-                this.author = ref.author;
-              }
-              this.creationDate = ref.creationDate;
-              this.elementQuantity = '' + ref.elementQuantity;
+              this.selectedReference = ref;
               break;
             }
           }
         }
       }
+    }
+    else {
+      this.selectedReference = null;
     }
   }
 
@@ -88,8 +84,6 @@ export class ReferencesComponent implements OnInit, DoCheck {
 
   fetch(requestPage: number): void {
 
-    console.log('requestPage', requestPage);
-
     const searchRequest: ReferencePageSortRequest = {
       page: requestPage ? String(requestPage) : String(0),
       sort: null,
@@ -100,7 +94,6 @@ export class ReferencesComponent implements OnInit, DoCheck {
 
     this.getByParams(searchRequest)
       .subscribe(response => {
-        console.log('Response', response);
         this.pageSortResponse = response;
         this.curPage = this.pageSortResponse.number;
         this.totalPage = this.pageSortResponse.totalPages;
@@ -115,11 +108,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
         });
       });
   }
-
-  goToAddPage(): void {
-    this.router.navigate(['/reference-create']);
-  }
-
+  
   getByParams(searchRequest: ReferencePageSortRequest): Observable<ReferencePageSortResponse> {
 
     let params = new HttpParams();

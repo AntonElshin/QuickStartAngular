@@ -17,9 +17,9 @@
             <a class="dropdown-item" *ngFor="let p of pages" (click)="fetch(p.id)"> {{ p.name }} </a>
           </div>
         </div>
-        из {{ totalPage }} страниц
-        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage-1)" [disabled]="curPage == 0">&laquo;</button>
-        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage+1)" [disabled]="curPage + 1 == totalPage">&raquo;</button>
+        из {{ +totalPage }} страниц
+        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage-1)" [disabled]="+curPage == 0">&laquo;</button>
+        <button type="button" class="btn btn-secondary mb-2" (click)="fetch(curPage+1)" [disabled]="+curPage + 1 == +totalPage">&raquo;</button>
       </form>
     </div>
   </nav>
@@ -62,21 +62,21 @@
   </tbody>
 </table>
 
-<div *ngIf="form">
+<div *ngIf="selectedReference">
   <hr>
   <h2>Дополнительная информация о выбранном элементе</h2>
   <form>
     <div class="form-group">
       <label for="author">Автор</label>
-      <input type="text" class="form-control" id="author" value="{{ author }}" readonly>
+      <input type="text" class="form-control" id="author" value="{{ selectedReference.author }}" readonly>
     </div>
     <div class="form-group">
       <label for="creationDate">Дата создания</label>
-      <input type="text" class="form-control" id="creationDate" value="{{ creationDate | date:'medium':null:'ru' }}" readonly>
+      <input type="text" class="form-control" id="creationDate" value="{{ selectedReference.creationDate | date:'medium':null:'ru' }}" readonly>
     </div>
     <div class="form-group">
       <label for="elementQuantity">Количество элементов</label>
-      <input type="text" class="form-control" id="elementQuantity" value="{{ elementQuantity }}" readonly>
+      <input type="text" class="form-control" id="elementQuantity" value="{{ selectedReference.elementQuantity }}" readonly>
     </div>
   </form>
 </div>
