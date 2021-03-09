@@ -116,11 +116,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
         });
       });
   }
-
-  goToAddPage(): void {
-    this.router.navigate(['/reference-create']);
-  }
-
+  
   getByParams(searchRequest: ReferencePageSortRequest): Observable<ReferencePageSortResponse> {
 
     let params = new HttpParams();
