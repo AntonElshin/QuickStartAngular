@@ -116,7 +116,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
         });
       });
   }
-  
+
   getByParams(searchRequest: ReferencePageSortRequest): Observable<ReferencePageSortResponse> {
 
     let params = new HttpParams();
