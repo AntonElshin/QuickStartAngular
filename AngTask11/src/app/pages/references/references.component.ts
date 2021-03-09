@@ -86,6 +86,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
 
   }
 
+
   fetch(requestPage: number): void {
 
     const searchRequest: ReferencePageSortRequest = {
