@@ -1,0 +1,17 @@
+<div *ngIf="reference">
+  <hr>
+  <h2>Дополнительная информация о выбранном элементе</h2>
+
+  <div class="form-group">
+    <label for="author">Автор</label>
+    <input type="text" class="form-control" id="author" value="{{ reference?.author }}" readonly>
+  </div>
+  <div class="form-group">
+    <label for="creationDate">Дата создания</label>
+    <input type="text" class="form-control" id="creationDate" value="{{ reference?.creationDate | date:'medium':null:'ru' }}" readonly>
+  </div>
+  <div class="form-group">
+    <label for="elementQuantity">Количество элементов</label>
+    <input type="text" class="form-control" id="elementQuantity" value="{{ reference?.elementQuantity }}" readonly>
+  </div>
+</div>
