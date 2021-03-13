@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HttpClient, HttpParams} from '@angular/common/http';
@@ -15,7 +15,7 @@ declare var $: any;
   templateUrl: './references.component.html',
   styleUrls: ['./references.component.css']
 })
-export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
+export class ReferencesComponent implements OnInit, OnDestroy {
 
   gSub: Subscription
 
@@ -39,29 +39,6 @@ export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
     private http: HttpClient,
     private router: Router
   ) {
-  }
-
-  ngDoCheck(): void {
-
-    const selRow = document.getElementsByClassName('selected')[0];
-    if (selRow !== undefined) {
-      const selNode = selRow.children[0];
-      if (selNode !== undefined) {
-        if (selNode.innerHTML !== null) {
-          for (let i = 0; i < this.references.length; i++) {
-            const ref = this.references[i];
-            if (+ref.id === +selNode.innerHTML) {
-              console.log('this.selectedReference', this.selectedReference);
-              this.selectedReference = ref;
-              break;
-            }
-          }
-        }
-      }
-    }
-    else {
-      this.selectedReference = null;
-    }
   }
 
   fillPages(): void {
@@ -92,7 +69,7 @@ export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
 
   fetch(requestPage: number): void {
 
-    console.log('requestPage', requestPage);
+    this.selectedReference = null;
 
     const searchRequest: ReferencePageSortRequest = {
       page: requestPage ? String(requestPage) : String(0),
@@ -104,19 +81,11 @@ export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
 
     this.gSub = this.getByParams(searchRequest)
       .subscribe(response => {
-        console.log('Response', response);
         this.pageSortResponse = response;
         this.curPage = this.pageSortResponse.number;
         this.totalPage = this.pageSortResponse.totalPages;
         this.references = this.pageSortResponse.content;
         this.fillPages();
-
-        $(document).ready(function(){
-          $('tr').click(function(){
-            $('tr').removeClass();
-            $(this).addClass('selected');
-          });
-        });
       });
   }
 
@@ -158,6 +127,17 @@ export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
   ngOnDestroy(): void {
     if (this.gSub) {
       this.gSub.unsubscribe();
+    }
+  }
+
+  onSelected(id: string): void {
+
+    for (let i = 0; i < this.references.length; i++) {
+      const ref = this.references[i];
+      if (+ref.id === +id) {
+        this.selectedReference = ref;
+        break;
+      }
     }
   }
 }

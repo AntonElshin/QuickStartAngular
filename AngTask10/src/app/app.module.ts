@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReferencesComponent } from './pages/references/references.component';
 import { ReferenceInfoComponent } from './pages/reference-info/reference-info.component';
+import {StyleDirective} from './directives/style.directive';
 
 
 registerLocaleData(ruLocale, 'ru');
@@ -17,7 +18,8 @@ registerLocaleData(ruLocale, 'ru');
   declarations: [
     AppComponent,
     ReferencesComponent,
-    ReferenceInfoComponent
+    ReferenceInfoComponent,
+    StyleDirective
   ],
   imports: [
     BrowserModule,
