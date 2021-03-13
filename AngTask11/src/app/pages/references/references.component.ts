@@ -1,6 +1,7 @@
-import { Component, OnInit, DoCheck} from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 import {Page} from '../../interfaces/common-interfaces';
 import {Reference, ReferencePageSortRequest, ReferencePageSortResponse} from '../../interfaces/reference-interfaces';
@@ -13,7 +14,9 @@ declare var $: any;
   templateUrl: './references.component.html',
   styleUrls: ['./references.component.css']
 })
-export class ReferencesComponent implements OnInit, DoCheck {
+export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
+
+  gSub: Subscription;
 
   form: FormGroup;
 
@@ -97,7 +100,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
       sysname: this.form.value.sysname ? this.form.value.sysname : null
     };
 
-    this.referenceService.fetch(searchRequest)
+    this.gSub = this.referenceService.fetch(searchRequest)
       .subscribe(response => {
         this.pageSortResponse = response;
         this.curPage = this.pageSortResponse.number;
@@ -112,5 +115,11 @@ export class ReferencesComponent implements OnInit, DoCheck {
           });
         });
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.gSub) {
+      this.gSub.unsubscribe();
+    }
   }
 }
