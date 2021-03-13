@@ -10,6 +10,9 @@ import {Reference} from '../../interfaces/reference-interfaces';
 })
 export class ReferencesComponent implements OnInit {
 
+  searchName = '';
+  searchSysname = '';
+
   form: FormGroup;
 
   references: Reference[] = [

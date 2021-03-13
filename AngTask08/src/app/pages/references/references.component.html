@@ -11,16 +11,13 @@
   <div class="form-row">
     <div class="col-sm-3 my-1">
       <label class="sr-only" for="referenceName">Название</label>
-      <input type="text" class="form-control" id="referenceName" placeholder="Название" formControlName="name">
+      <input type="text" class="form-control" id="referenceName" placeholder="Название" formControlName="name" [(ngModel)]="searchName">
     </div>
     <div class="col-sm-3 my-1">
       <label class="sr-only" for="referenceSysName">Системное название</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="referenceSysName" placeholder="Системное название" formControlName="sysname">
+        <input type="text" class="form-control" id="referenceSysName" placeholder="Системное название" formControlName="sysname" [(ngModel)]="searchSysname">
       </div>
-    </div>
-    <div class="col-auto my-1">
-      <button type="submit" class="btn btn-primary">Поиск</button>
     </div>
   </div>
 </form>
@@ -35,7 +32,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let ref of references">
+  <tr *ngFor="let ref of references | filter: searchName : searchSysname ">
     <th scope="row">{{ref.id}}</th>
     <td>{{ref.name}}</td>
     <td>{{ref.sysname}}</td>
