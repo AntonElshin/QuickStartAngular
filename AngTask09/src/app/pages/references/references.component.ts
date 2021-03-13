@@ -1,7 +1,8 @@
-import { Component, OnInit, DoCheck} from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {Subscription} from 'rxjs';
 
 import {Page} from '../../interfaces/common-interfaces';
 import {Reference, ReferencePageSortRequest, ReferencePageSortResponse} from '../../interfaces/reference-interfaces';
@@ -14,7 +15,9 @@ declare var $: any;
   templateUrl: './references.component.html',
   styleUrls: ['./references.component.css']
 })
-export class ReferencesComponent implements OnInit, DoCheck {
+export class ReferencesComponent implements OnInit, DoCheck, OnDestroy {
+
+  gSub: Subscription;
 
   form: FormGroup;
 
@@ -92,7 +95,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
       sysname: this.form.value.sysname ? this.form.value.sysname : null
     };
 
-    this.getByParams(searchRequest)
+    this.gSub = this.getByParams(searchRequest)
       .subscribe(response => {
         this.pageSortResponse = response;
         this.curPage = this.pageSortResponse.number;
@@ -108,7 +111,7 @@ export class ReferencesComponent implements OnInit, DoCheck {
         });
       });
   }
-  
+
   getByParams(searchRequest: ReferencePageSortRequest): Observable<ReferencePageSortResponse> {
 
     let params = new HttpParams();
@@ -142,5 +145,11 @@ export class ReferencesComponent implements OnInit, DoCheck {
     return this.http.get<ReferencePageSortResponse>('http://localhost:3000/api/references', {
       params
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.gSub) {
+      this.gSub.unsubscribe();
+    }
   }
 }
