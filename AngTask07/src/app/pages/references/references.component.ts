@@ -40,8 +40,4 @@ export class ReferencesComponent implements OnInit {
       sysname: new FormControl(null)
     });
   }
-
-  fetch(): void {
-
-  }
 }

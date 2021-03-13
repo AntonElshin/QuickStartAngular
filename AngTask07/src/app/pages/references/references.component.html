@@ -7,7 +7,11 @@
   </nav>
 </div>
 
-<form [formGroup]="form" (click)="fetch()">
+<form [formGroup]="form">
+
+  <hr>
+  <h3>Добавление нового элемента</h3>
+
   <div class="form-row">
     <div class="col-sm-3 my-1">
       <label class="sr-only" for="referenceName">Название</label>
@@ -19,8 +23,30 @@
         <input type="text" class="form-control" id="referenceSysName" placeholder="Системное название" formControlName="sysname">
       </div>
     </div>
+    <div class="col-sm-3 my-1">
+      <label class="sr-only" for="referenceDescription">Описание</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="referenceDescription" placeholder="Описание" formControlName="sysname">
+      </div>
+    </div>
     <div class="col-auto my-1">
-      <button type="submit" class="btn btn-primary">Поиск</button>
+      <button type="submit" class="btn btn-primary">Добавить</button>
+    </div>
+  </div>
+
+  <hr>
+  <h3>Поиск</h3>
+
+  <div class="form-row">
+    <div class="col-sm-3 my-1">
+      <label class="sr-only" for="searchReferenceName">Название</label>
+      <input type="text" class="form-control" id="searchReferenceName" placeholder="Название" formControlName="name">
+    </div>
+    <div class="col-sm-3 my-1">
+      <label class="sr-only" for="searchReferenceSysName">Системное название</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="searchReferenceSysName" placeholder="Системное название" formControlName="sysname">
+      </div>
     </div>
   </div>
 </form>
