@@ -10,6 +10,10 @@ import {Reference} from '../../interfaces/reference-interfaces';
 })
 export class ReferencesComponent implements OnInit {
 
+  referenceName = '';
+  referenceSysname = '';
+  referenceDescription = '';
+
   searchName = '';
   searchSysname = '';
 
@@ -33,6 +37,8 @@ export class ReferencesComponent implements OnInit {
     {id: 15, name: 'ref name 15', sysname: 'refsysname15', description: 'description 15'}
   ];
 
+  seq = 16;
+
   constructor() {
   }
 
@@ -44,7 +50,18 @@ export class ReferencesComponent implements OnInit {
     });
   }
 
-  fetch(): void {
+  addReference(): void {
 
+    this.references.push({
+      id: this.seq,
+      name: this.referenceName,
+      sysname: this.referenceSysname,
+      description: this.referenceDescription
+    });
+    this.seq += 1;
+
+    this.referenceName = '';
+    this.referenceSysname = '';
+    this.referenceDescription = '';
   }
 }
