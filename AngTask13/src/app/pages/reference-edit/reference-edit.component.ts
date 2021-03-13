@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
@@ -6,13 +6,17 @@ import {Reference} from '../../interfaces/reference-interfaces';
 import {ReferenceService} from '../../services/reference.service';
 import {switchMap} from 'rxjs/operators';
 import {ReferenceSysNameValidator} from '../../validators/reference.validator';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-reference-edit',
   templateUrl: './reference-edit.component.html',
   styleUrls: ['./reference-edit.component.css']
 })
-export class ReferenceEditComponent implements OnInit {
+export class ReferenceEditComponent implements OnInit, OnDestroy {
+
+  gSub: Subscription;
+  mSub: Subscription;
 
   form: FormGroup;
   id: string;
@@ -26,7 +30,7 @@ export class ReferenceEditComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.params.pipe(
+    this.gSub = this.route.params.pipe(
       switchMap((params: Params) => {
         return this.referenceService.getById(params['id']);
       })
@@ -59,7 +63,7 @@ export class ReferenceEditComponent implements OnInit {
         description: this.form.value.description
       };
 
-      this.referenceService.modify(this.id, editReference)
+      this.mSub = this.referenceService.modify(this.id, editReference)
         .subscribe(response => {
           console.log('Edit response', response);
         });
@@ -70,5 +74,15 @@ export class ReferenceEditComponent implements OnInit {
 
   goToReferencesPage(): void {
     this.router.navigate(['/references']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.gSub) {
+      this.gSub.unsubscribe();
+    }
+
+    if (this.mSub) {
+      this.mSub.unsubscribe();
+    }
   }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 import {Reference} from '../../interfaces/reference-interfaces';
 import {ReferenceService} from '../../services/reference.service';
@@ -12,7 +13,9 @@ import {ReferenceSysNameValidator} from '../../validators/reference.validator';
   templateUrl: './reference-create.component.html',
   styleUrls: ['./reference-create.component.css']
 })
-export class ReferenceCreateComponent implements OnInit {
+export class ReferenceCreateComponent implements OnInit, OnDestroy {
+
+  cSub: Subscription;
 
   form: FormGroup;
 
@@ -49,7 +52,7 @@ export class ReferenceCreateComponent implements OnInit {
         description: this.form.value.description
       };
 
-      this.referenceService.add(newReference)
+      this.cSub = this.referenceService.add(newReference)
         .subscribe(response => {
           console.log('Add response', response);
         });
@@ -65,6 +68,12 @@ export class ReferenceCreateComponent implements OnInit {
 
   goToReferencesPage(): void {
     this.router.navigate(['/references']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.cSub) {
+      this.cSub.unsubscribe();
+    }
   }
 
 }
