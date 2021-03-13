@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 import {Reference} from '../../interfaces/reference-interfaces';
 import {ReferenceService} from '../../services/reference.service';
 import {switchMap} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-reference-view',
   templateUrl: './reference-view.component.html',
   styleUrls: ['./reference-view.component.css']
 })
-export class ReferenceViewComponent implements OnInit {
+export class ReferenceViewComponent implements OnInit, OnDestroy {
+
+  gSub: Subscription;
 
   form: FormGroup;
   id: string;
@@ -25,7 +29,7 @@ export class ReferenceViewComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.params.pipe(
+    this.gSub = this.route.params.pipe(
       switchMap((params: Params) => {
         return this.referenceService.getById(params['id']);
       })
@@ -46,6 +50,12 @@ export class ReferenceViewComponent implements OnInit {
 
   goToReferencesPage(): void {
     this.router.navigate(['/references']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.gSub) {
+      this.gSub.unsubscribe();
+    }
   }
 
 }
