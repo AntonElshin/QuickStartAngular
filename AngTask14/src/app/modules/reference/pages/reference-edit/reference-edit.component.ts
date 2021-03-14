@@ -5,7 +5,6 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Reference} from '../../interfaces/reference-interfaces';
 import {ReferenceService} from '../../services/reference.service';
 import {switchMap} from 'rxjs/operators';
-import {ReferenceSysNameValidator} from '../../validators/reference.validator';
 import {Subscription} from 'rxjs';
 
 @Component({
