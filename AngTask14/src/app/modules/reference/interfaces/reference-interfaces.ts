@@ -1,4 +1,4 @@
-import {PageSortRequest, PageSortResponse} from './common-interfaces';
+import {PageSortRequest, PageSortResponse} from '../../../interfaces/common-interfaces';
 
 export interface Reference {
   id?: string;

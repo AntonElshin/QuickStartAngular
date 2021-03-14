@@ -47,7 +47,7 @@ export class LoginPageComponent implements OnInit {
       if (this.form.controls.login.value === 'dsso' && this.form.controls.password.value === '12345678') {
         this.form.controls.login.setValue(null);
         this.form.controls.password.setValue(null);
-        this.router.navigate(['/references']);
+        this.router.navigate(['/reference']);
       }
       else {
         this.form.controls.login.setValue(null);

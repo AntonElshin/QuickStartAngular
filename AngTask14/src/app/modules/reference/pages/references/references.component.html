@@ -62,7 +62,7 @@
     <td>{{ref.description}}</td>
     <td>
       <div>
-        <button type="button" class="btn btn-primary" [routerLink]="['/reference-edit', ref.id]">Изменить</button>
+        <button type="button" class="btn btn-primary" [routerLink]="['/reference', 'edit', ref.id]">Изменить</button>
         <button type="button" class="btn btn-danger" (click)="remove(ref.id)">Удалить</button>
       </div>
     <td>

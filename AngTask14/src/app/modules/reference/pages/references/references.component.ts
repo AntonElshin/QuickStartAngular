@@ -3,7 +3,7 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 
-import {Page} from '../../interfaces/common-interfaces';
+import {Page} from '../../../../interfaces/common-interfaces';
 import {Reference, ReferencePageSortRequest, ReferencePageSortResponse} from '../../interfaces/reference-interfaces';
 import {ReferenceService} from '../../services/reference.service';
 
@@ -93,7 +93,7 @@ export class ReferencesComponent implements OnInit, OnDestroy {
   }
 
   goToAddPage(): void {
-    this.router.navigate(['/reference-create']);
+    this.router.navigate(['/reference', 'create']);
   }
 
   ngOnDestroy(): void {

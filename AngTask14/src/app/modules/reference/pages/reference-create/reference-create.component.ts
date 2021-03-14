@@ -67,7 +67,7 @@ export class ReferenceCreateComponent implements OnInit, OnDestroy {
   }
 
   goToReferencesPage(): void {
-    this.router.navigate(['/references']);
+    this.router.navigate(['/reference', 'references']);
   }
 
   ngOnDestroy(): void {
