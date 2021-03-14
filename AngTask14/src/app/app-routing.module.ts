@@ -13,7 +13,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'reference', loadChildren: './modules/reference/reference.module#ReferenceModule'
+    path: 'reference', loadChildren: () => import('./modules/reference/reference.module').then(m => m.ReferenceModule)
   }
 ];
 
