@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
       this.authService.logout();
       this.router.navigate(['/login'], {
         queryParams: {
-          sessionExpires: true
+          sessionIsExpires: true
         }
       });
       return false;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-error-page',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorPageComponent implements OnInit {
 
-  constructor() { }
+  isAuth = false;
+
+  constructor(private authService: AuthService) {
+    this.isAuth = authService.isAuthenticated();
+  }
 
   ngOnInit(): void {
   }
