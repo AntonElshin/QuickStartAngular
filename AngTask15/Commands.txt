@@ -1,0 +1,21 @@
+http://localhost:4200/
+логин/пароль: dsso/12345678
+Сессия открывается на 3600 секунд, чтобы быстрее можно было проверить её окончание
+
+1). Создать проект
+ng new AngTask15 --skipTests
+
+2). Установить PrimeNG
+npm install primeng --save
+
+3). Установить иконки PrimeNG
+npm install primeicons --save
+
+4). В файле angular.json добавить
+
+            "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/styles.css"
+            ]
