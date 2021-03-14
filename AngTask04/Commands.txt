@@ -1,3 +1,5 @@
+http://localhost:4200/
+
 1). Создать проект
 ng new AngTask04 --skipTests
 
@@ -21,6 +23,3 @@ npm install bootstrap --save
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
-			
-6). Создать компонет
-ng g c pages/login-page --skipTests
