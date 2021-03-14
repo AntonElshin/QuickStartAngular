@@ -3,17 +3,20 @@ import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
+import {ErrorPageComponent} from './pages/error-page/error-page.component';
 
 const routes: Routes = [
   {
-    path: '', component: AppComponent, children: [
-      {path: '', redirectTo: '/login', pathMatch: 'full'},
-      {path: 'login', component: LoginPageComponent}
-    ],
-    runGuardsAndResolvers: 'always'
+    path: 'reference', loadChildren: () => import('./modules/reference/reference.module').then(m => m.ReferenceModule)
   },
   {
-    path: 'reference', loadChildren: () => import('./modules/reference/reference.module').then(m => m.ReferenceModule)
+    path: '', component: AppComponent, children: [
+      {path: '', redirectTo: '/login', pathMatch: 'full'},
+      {path: 'login', component: LoginPageComponent},
+      {path: 'error', component: ErrorPageComponent},
+      {path: '**', redirectTo: '/error'}
+    ],
+    runGuardsAndResolvers: 'always'
   }
 ];
 

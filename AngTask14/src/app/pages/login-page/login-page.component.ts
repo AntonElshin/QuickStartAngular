@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +14,10 @@ export class LoginPageComponent implements OnInit {
   loadingExecutingFlag = false;
   disableFlag = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private auth: AuthService
+  ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
     };
@@ -39,23 +43,30 @@ export class LoginPageComponent implements OnInit {
     this.loadingExecutingFlag = true;
     this.disableFlag = true;
 
-    setTimeout(() => {
-      console.log('Timeout is over');
-      this.loadingExecutingFlag = false;
-      this.disableFlag = false;
+    this.auth.login(this.form.controls.login.value, this.form.controls.password.value);
 
-      if (this.form.controls.login.value === 'dsso' && this.form.controls.password.value === '12345678') {
-        this.form.controls.login.setValue(null);
-        this.form.controls.password.setValue(null);
-        this.router.navigate(['/reference']);
+    this.auth.isAuthenticated().then(isAuth => {
+
+      if (isAuth) {
+        this.router.navigate(['/reference']).then(() => {
+            this.form.controls.login.setValue(null);
+            this.form.controls.password.setValue(null);
+            this.loadingExecutingFlag = false;
+            this.disableFlag = false;
+          }
+        );
       }
       else {
         this.form.controls.login.setValue(null);
         this.form.controls.password.setValue(null);
+        this.loadingExecutingFlag = false;
+        this.disableFlag = false;
         this.reloadCurrentRoute();
       }
 
-    }, 2000);
+
+    });
+
   }
 
   reloadCurrentRoute(): void {

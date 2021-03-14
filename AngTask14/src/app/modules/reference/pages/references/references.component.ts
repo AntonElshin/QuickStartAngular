@@ -7,7 +7,6 @@ import {Page} from '../../../../interfaces/common-interfaces';
 import {Reference, ReferencePageSortRequest, ReferencePageSortResponse} from '../../interfaces/reference-interfaces';
 import {ReferenceService} from '../../services/reference.service';
 
-
 @Component({
   selector: 'app-references',
   templateUrl: './references.component.html',
