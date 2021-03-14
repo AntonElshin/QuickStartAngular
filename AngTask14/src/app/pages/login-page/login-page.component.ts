@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private authService: AuthService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
@@ -43,9 +43,7 @@ export class LoginPageComponent implements OnInit {
     this.loadingExecutingFlag = true;
     this.disableFlag = true;
 
-    this.auth.login(this.form.controls.login.value, this.form.controls.password.value);
-
-    this.auth.isAuthenticated().then(isAuth => {
+    this.authService.login(this.form.controls.login.value, this.form.controls.password.value).then(isAuth => {
 
       if (isAuth) {
         this.router.navigate(['/reference']).then(() => {
@@ -63,8 +61,6 @@ export class LoginPageComponent implements OnInit {
         this.disableFlag = false;
         this.reloadCurrentRoute();
       }
-
-
     });
 
   }
